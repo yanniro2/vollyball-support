@@ -1,27 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+.font-bebas {
+  font-family: "Bebas Neue", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Poppins Font Class */
+.font-poppins {
+  font-family: "Poppins", sans-serif;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.btn{
+  @apply  border border-[#E6E6E6] py-4 pl-12 pr-12 rounded-xl text-[#898989] shadow-sm bg-white;
+}
+
+.btn-active {
+  @apply  border border-[#EF0325] py-4 pl-12 pr-12 rounded-xl text-[#EF0325] shadow bg-[#EF032512];
+}
+
+.btn-primary {
+@apply bg-[#898989] text-white flex items-center rounded-full gap-3 p-1 pl-8;
+}
+
+.btn-primary-active {
+@apply bg-[#EF0325] text-white flex items-center rounded-full gap-3 p-1 pl-8 font-medium ;
+}
+
+.process-start {
+  @apply w-[2rem] h-[2rem] bg-[#EF0325] flex items-center justify-center text-white rounded-full;
 }
