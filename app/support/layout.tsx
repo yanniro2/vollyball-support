@@ -6,7 +6,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="w-screen h-screen fixed top-0 left-0 right-0 bottom-0 z-[100] flex items-center justify-center">
+    <section className="w-screen h-screen fixed top-0 left-0 right-0 bottom-0 z-[100] flex items-center justify-center overflow-auto">
       <div className="w-3/5 h-min bg-white rounded-xl drop-shadow p-3 flex flex-col gap-5">
         {/* Banner */}
         <div className="bg-[#242424] rounded-xl relative">

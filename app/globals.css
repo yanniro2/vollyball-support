@@ -25,6 +25,9 @@
 .btn-primary {
 @apply bg-[#898989] text-white flex items-center rounded-full gap-3 p-1 pl-8;
 }
+.btn-second {
+  @apply bg-[#0270E0] text-white flex items-center rounded-full gap-3 py-3 px-6 w-fit;
+}
 
 .btn-primary-active {
 @apply bg-[#EF0325] text-white flex items-center rounded-full gap-3 p-1 pl-8 font-medium ;

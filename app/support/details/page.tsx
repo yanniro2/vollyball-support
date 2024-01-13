@@ -1,4 +1,6 @@
 "use client";
+import CustomInput from "@/app/components/CustomInput";
+import Link from "next/link";
 import React, { useState } from "react";
 
 type InputField = {
@@ -20,8 +22,7 @@ const inputFields: InputField[] = [
     value: "",
     onChange: () => {},
     pattern: /^[A-Za-z ]+$/,
-    errorMessage:
-      "Invalid input. Please enter a valid first name. Only letters and spaces are allowed",
+    errorMessage: "Only letters and spaces are allowed",
     sample: "John / john / david",
   },
   {
@@ -31,8 +32,7 @@ const inputFields: InputField[] = [
     value: "",
     onChange: () => {},
     pattern: /^[A-Za-z ]+$/,
-    errorMessage:
-      "Invalid input. Please enter a valid last name. Only letters and spaces are allowed.",
+    errorMessage: "Only letters and spaces are allowed.",
     sample: "Doe / doe / smith",
   },
   {
@@ -53,7 +53,7 @@ const inputFields: InputField[] = [
     onChange: () => {},
     pattern: /^(\+\d{1,4})?(\s?\d{1,})$/,
     errorMessage:
-      "Invalid input. Please enter a valid mobile number. Only numbers and an optional country code with spaces are allowed.",
+      "Only numbers and an optional country code with spaces are allowed.",
     sample: "+123 456789 / 7890123456",
   },
 ];
@@ -115,46 +115,29 @@ const Page = () => {
     <div className="flex flex-col p-3 gap-3 pb-0">
       <div className="gap-5 grid grid-rows-2 grid-cols-2">
         {inputFields.map((inputField, index) => (
-          <div key={index} className="w-full flex flex-col gap-1">
-            <label
-              htmlFor={inputField.label}
-              className={`font-poppins ${
-                errors[inputField.label.toLowerCase()] ? "text-red-500" : ""
-              }`}>
-              {inputField.label}
-            </label>
-            <input
-              type={inputField.type}
-              placeholder={inputField.placeholder}
-              value={formData[inputField.label.toLowerCase()]}
-              onChange={(e) =>
-                handleInputChange(
-                  inputField.label.toLowerCase(),
-                  e.target.value
-                )
-              }
-              onBlur={validateForm}
-              className={`bg-[#F5F8FA] p-3 w-full rounded-xl outline-none font-normal pl-[1.5rem] ${
-                errors[inputField.label.toLowerCase()] ? "outline-red-500" : ""
-              }`}
-              pattern={inputField.pattern?.toString()}
-            />
-            <p className="text-gray-400 text-sm">
-              Example: {inputField.sample}
-            </p>
-            {errors[inputField.label.toLowerCase()] && (
-              <span className="text-red-500">
-                {errors[inputField.label.toLowerCase()]}
-              </span>
-            )}
-          </div>
+          <CustomInput
+            key={index}
+            label={inputField.label}
+            type={inputField.type}
+            placeholder={inputField.placeholder}
+            value={formData[inputField.label.toLowerCase()]}
+            onChange={(e) =>
+              handleInputChange(inputField.label.toLowerCase(), e.target.value)
+            }
+            onBlur={validateForm}
+            pattern={inputField.pattern}
+            errorMessage={inputField.errorMessage}
+            sample={inputField.sample}
+            error={errors[inputField.label.toLowerCase()]}
+          />
         ))}
       </div>
 
       <div className="flex items-center justify-center p-[1rem]">
-        <button
+        <Link
           onClick={handleContinueToPayment}
-          disabled={!isFormValid}
+          // disabled={!isFormValid}
+          href={"/support/payment"}
           className={`${
             isFormValid ? "btn-primary-active " : "btn-primary"
           } font-poppins`}>
@@ -181,7 +164,7 @@ const Page = () => {
               fill="white"
             />
           </svg>
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 
 type Props = {};
@@ -56,10 +57,11 @@ const Page = (props: Props) => {
       </div>
 
       <div className="flex items-center justify-center p-[1rem]">
-        <button
+        <Link
           className={`btn ${
             donationAmount ? "btn-primary-active" : "btn-primary"
-          }`}>
+          }`}
+          href={"/support/details"}>
           Donate Now
           <svg
             width="43"
@@ -77,7 +79,7 @@ const Page = (props: Props) => {
               fill="white"
             />
           </svg>
-        </button>
+        </Link>
       </div>
     </div>
   );
