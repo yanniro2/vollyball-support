@@ -137,7 +137,7 @@ const Page = () => {
     switch (selectedPaymentOption) {
       case "masterVisa":
         return (
-          <div className="flex w-full h-full flex-col gap-5 py-5">
+          <div className="flex w-full h-full flex-col gap-5">
             <div className="flex items-center justify-between w-full">
               <h1 className="text-xl font-poppins font-semibold">
                 Payment method : Master / Visa card
@@ -245,7 +245,7 @@ const Page = () => {
 
       {renderPaymentFields()}
 
-      <div className="flex items-center justify-center p-[1rem] flex-col">
+      <div className="flex items-center justify-center  flex-col">
         <Link
           onClick={handleContinueToPayment}
           // disabled={!isFormValid}

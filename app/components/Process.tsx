@@ -20,11 +20,11 @@ const Process = () => {
 
   useEffect(() => {
     // Determine the step based on the pathname
-    if (pathname === "/support/amount") {
+    if (pathname === "/amount") {
       setCurrentStep(1);
-    } else if (pathname === "/support/details") {
+    } else if (pathname === "/details") {
       setCurrentStep(2);
-    } else if (pathname === "/support/payment") {
+    } else if (pathname === "/payment") {
       setCurrentStep(3);
     } else {
       // Default to step 1 if the pathname doesn't match any specific step

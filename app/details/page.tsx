@@ -137,7 +137,7 @@ const Page = () => {
         <Link
           onClick={handleContinueToPayment}
           // disabled={!isFormValid}
-          href={"/support/payment"}
+          href={"/payment"}
           className={`${
             isFormValid ? "btn-primary-active " : "btn-primary"
           } font-poppins`}>
