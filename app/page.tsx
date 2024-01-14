@@ -1,32 +1,64 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+const defaultAmounts = [10, , 25, 50, 100];
 
 type Props = {};
 
 const Page = (props: Props) => {
-  const [donationAmount, setDonationAmount] = useState<number>(0);
+  // new url get
+
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  //////
+  const [donationAmount, setDonationAmount] = useState<number>(
+    parseInt(searchParams.get("amount") || "0")
+  );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
 
-    // Use a regular expression to allow only numeric input
-    const numericInput = inputValue.replace(/[^0-9.]/g, "");
+    // // Use a regular expression to allow only numeric input
+    // const numericInput = inputValue.replace(/[^0-9.]/g, "");
 
-    // Update the state with the numeric input
-    setDonationAmount(parseFloat(numericInput));
+    // // Update the state with the numeric input
+    // setDonationAmount(parseFloat(numericInput));
+    // const params = new URLSearchParams(searchParams);
+    // if (inputValue) {
+    //   params.set("amount", inputValue);
+    // } else {
+    //   params.delete("amount");
+    // }
+
+    // replace(`${pathname}?${params.toString()}`);
+    setDonationAmount(parseFloat(inputValue));
+    const amountString = inputValue.toString();
+    const params = new URLSearchParams(searchParams);
+    params.set("amount", amountString);
+    replace(`${pathname}?${params.toString()}`);
   };
 
   const handleButtonClick = (amount: number) => {
     setDonationAmount(amount);
+    const amountString = amount.toString();
+    const params = new URLSearchParams(searchParams);
+    params.set("amount", amountString);
+    replace(`${pathname}?${params.toString()}`);
   };
+
   return (
     <div className="flex flex-col p-3 gap-3 pb-0">
       <h3 className="">Amount to be given</h3>
       <input
+        name="amount"
         type="text"
         placeholder="Enter the amount"
-        value={donationAmount !== 0 ? `$${donationAmount}` : 0}
+        value={donationAmount ? `$${donationAmount}` : 0}
+        defaultValue={searchParams.get("amount"?.toString()) || ""}
         onChange={handleInputChange}
         className="bg-[#F5F8FA] p-3 w-full rounded-full pl-[2rem] placeholder:font-normal outline-none"
         id="donationAmount"
